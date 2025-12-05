@@ -1,0 +1,21 @@
+# NVDA Add-on Scons script
+
+import os
+import sys
+
+# Add-on build variables
+sys.path.append(os.path.dirname(__file__))
+import buildVars
+
+env = Environment()
+
+# Build the add-on
+env.Tool("NVDATool", toolpath=["site_scons/site_tools"])
+
+env["addon_info"] = buildVars.addon_info
+env["brailleTables"] = {}
+env["symbolDictionaries"] = {}
+
+addonFile = env.NVDAAddon("addon")
+
+env.Default(addonFile)

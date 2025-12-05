@@ -1,0 +1,10 @@
+# Dependencias de Python para AI Image Describer
+
+# Procesamiento de imágenes
+Pillow>=10.0.0
+
+# Peticiones HTTP
+requests>=2.31.0
+
+# Opcional: Para funcionalidades avanzadas de captura de ventanas en Windows
+# pywin32>=306
