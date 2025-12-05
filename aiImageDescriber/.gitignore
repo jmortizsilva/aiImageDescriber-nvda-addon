@@ -1,0 +1,13 @@
+*.pyc
+__pycache__/
+*.nvda-addon
+.sconsign.dblite
+.vscode/
+*.log
+.idea/
+.DS_Store
+*.swp
+*~
+build/
+dist/
+*.egg-info/

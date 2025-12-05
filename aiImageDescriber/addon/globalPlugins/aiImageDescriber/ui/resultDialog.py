@@ -185,20 +185,20 @@ Este complemento te permite describir imágenes usando inteligencia artificial.
 ATAJOS DE TECLADO:
 
 Comandos básicos (verbalizan la descripción):
-• NVDA+Shift+I: Describe la imagen en el objeto con foco
-• NVDA+Shift+F: Captura y describe la pantalla completa
-• NVDA+Shift+C: Describe una imagen desde el portapapeles
-• NVDA+Shift+L: Describe una imagen desde archivo
+• NVDA+Alt+I: Describe la imagen en el objeto con foco
+• NVDA+Alt+S: Captura y describe la pantalla completa
+• NVDA+Alt+C: Describe una imagen desde el portapapeles
+• NVDA+Alt+F: Describe una imagen desde archivo
 
-Comandos con ventana (añadir Control para mostrar en ventana):
-• NVDA+Shift+Control+I: Imagen en foco con ventana
-• NVDA+Shift+Control+F: Pantalla completa con ventana
-• NVDA+Shift+Control+C: Portapapeles con ventana
-• NVDA+Shift+Control+L: Archivo con ventana
+Comandos con ventana (añadir Shift para mostrar en ventana):
+• NVDA+Alt+Shift+I: Imagen en foco con ventana
+• NVDA+Alt+Shift+S: Pantalla completa con ventana
+• NVDA+Alt+Shift+C: Portapapeles con ventana
+• NVDA+Alt+Shift+F: Archivo con ventana
 
 Otros comandos:
-• NVDA+Shift+H: Muestra esta ayuda
-• NVDA+Shift+S: Abre la configuración del complemento
+• NVDA+Alt+H: Muestra esta ayuda
+• NVDA+Alt+O: Abre la configuración del complemento
 
 CONFIGURACIÓN:
 

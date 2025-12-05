@@ -34,7 +34,7 @@ class GeminiClient:
 		self.model = self.DEFAULT_MODEL
 		self._modelDetected = False  # Flag para saber si ya detectamos el modelo
 	
-	def describeImage(self, imageBase64, detail="auto", language="es", maxTokens=2048):
+	def describeImage(self, imageBase64, detail="auto", language="es", maxTokens=5000):
 		"""
 		Describe una imagen usando Gemini
 		
@@ -64,13 +64,13 @@ class GeminiClient:
 		try:
 			# Preparar prompt según nivel de detalle e idioma
 			if detail == "low":
-				# Descripción breve y concisa (ahorra tokens)
+				# Descripción breve (usa menos tokens)
 				prompts = {
-					"es": "Describe brevemente esta imagen en 1-2 frases: qué es y qué está pasando.",
+					"es": "Describe brevemente esta imagen en 1-2 frases: qué es y qué está sucediendo.",
 					"en": "Briefly describe this image in 1-2 sentences: what it is and what's happening.",
 					"fr": "Décris brièvement cette image en 1-2 phrases: ce que c'est et ce qui se passe."
 				}
-				maxTokensToUse = 150
+				maxTokensToUse = 300  # Aumentado de 150 a 300 para thinking tokens
 			elif detail == "high":
 				# Descripción muy detallada (usa más tokens)
 				prompts = {
@@ -128,10 +128,10 @@ class GeminiClient:
 					"fr": (
 						"Décris cette image clairement pour une personne malvoyante. "
 						"Inclure: scène générale, objets principaux, personnes (le cas échéant), couleurs pertinentes, "
-						"texte visible, et le message ou l'objectif de l'image. Sois précis mais concis."
-					)
-				}
-				maxTokensToUse = 500  # Reducido de 800 a 500 para nivel AUTO
+				"texte visible, et le message ou l'objectif de l'image. Sois précis mais concis."
+			)
+		}
+			maxTokensToUse = 2000  # Aumentado para thinking tokens de Gemini
 			
 			prompt = prompts.get(language, prompts["es"])
 			
@@ -201,13 +201,14 @@ class GeminiClient:
 					raise Exception("La respuesta fue bloqueada por detección de recitación")
 				elif finish_reason == "MAX_TOKENS":
 					# En Gemini 2.5, los thinking tokens pueden consumir todo el límite
-					# Si no hay contenido, es un error
+					# Si hay contenido parcial, usarlo con advertencia
+					log.warning("Gemini alcanzó MAX_TOKENS, verificando si hay contenido parcial...")
 					if "content" not in candidate or "parts" not in candidate.get("content", {}):
 						raise Exception(
-							"El modelo alcanzó el límite de tokens antes de generar respuesta. "
-							"Esto puede deberse a 'thinking tokens' internos del modelo. "
-							"El límite se aumentó automáticamente, intenta de nuevo."
+							"El modelo alcanzó el límite de tokens sin generar respuesta. "
+							"Intenta usar el nivel de detalle 'Bajo' en las preferencias."
 						)
+					# Si hay contenido, continuar y usarlo (puede estar truncado)
 			
 			if "content" not in candidate:
 				log.error(f"Candidate structure: {json.dumps(candidate, indent=2)[:500]}")

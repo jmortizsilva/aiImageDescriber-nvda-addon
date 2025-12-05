@@ -98,49 +98,49 @@ Para usar el complemento, necesitas obtener una API key de uno de estos proveedo
 #### Comandos básicos (verbalizan la descripción)
 
 | Atajo | Función |
-|-------|---------|
-| `NVDA+Shift+I` | Describir imagen bajo el foco o cursor |
-| `NVDA+Shift+F` | Capturar y describir pantalla completa |
-| `NVDA+Shift+C` | Describir imagen desde el portapapeles |
-| `NVDA+Shift+L` | Cargar y describir imagen desde archivo |
+|-------|------|
+| `NVDA+Alt+I` | Describir imagen bajo el foco o cursor |
+| `NVDA+Alt+S` | Capturar y describir pantalla completa |
+| `NVDA+Alt+C` | Describir imagen desde el portapapeles |
+| `NVDA+Alt+F` | Cargar y describir imagen desde archivo |
 
-#### Comandos con ventana (añadir Control para mostrar resultado en ventana)
+#### Comandos con ventana (añadir Shift para mostrar resultado en ventana)
 
 | Atajo | Función |
-|-------|---------|
-| `NVDA+Shift+Control+I` | Describir imagen en foco y mostrar en ventana |
-| `NVDA+Shift+Control+F` | Capturar pantalla y mostrar en ventana |
-| `NVDA+Shift+Control+C` | Describir portapapeles y mostrar en ventana |
-| `NVDA+Shift+Control+L` | Cargar archivo y mostrar en ventana |
+|-------|------|
+| `NVDA+Alt+Shift+I` | Describir imagen en foco y mostrar en ventana |
+| `NVDA+Alt+Shift+S` | Capturar pantalla y mostrar en ventana |
+| `NVDA+Alt+Shift+C` | Describir portapapeles y mostrar en ventana |
+| `NVDA+Alt+Shift+F` | Cargar archivo y mostrar en ventana |
 
 #### Otros comandos
 
 | Atajo | Función |
-|-------|---------|
-| `NVDA+Shift+H` | Mostrar ayuda rápida |
-| `NVDA+Shift+S` | Abrir configuración del complemento |
+|-------|------|
+| `NVDA+Alt+H` | Mostrar ayuda rápida |
+| `NVDA+Alt+O` | Abrir configuración del complemento |
 
-**Nota**: Los comandos básicos verbalizan el resultado. Para ver la descripción en una ventana donde puedes copiarla o revisarla con más detalle, añade la tecla `Control` a cualquier comando básico.
+**Nota**: Los comandos básicos verbalizan el resultado. Para ver la descripción en una ventana donde puedes copiarla o revisarla con más detalle, añade la tecla `Shift` a cualquier comando básico.
 
 ### Ejemplos de uso
 
 #### 1. Describir una imagen en una página web
 
 1. Navega con NVDA hasta una imagen en el navegador
-2. Presiona `NVDA+Shift+I` (verbaliza) o `NVDA+Shift+Control+I` (ventana)
+2. Presiona `NVDA+Alt+I` (verbaliza) o `NVDA+Alt+Shift+I` (ventana)
 3. Espera unos segundos mientras se procesa
 4. NVDA leerá la descripción de la imagen
 
 #### 2. Describir una captura de pantalla
 
-1. Presiona `NVDA+Shift+F` (verbaliza) o `NVDA+Shift+Control+F` (ventana)
+1. Presiona `NVDA+Alt+S` (verbaliza) o `NVDA+Alt+Shift+S` (ventana)
 2. NVDA capturará la pantalla completa
 3. Espera mientras se procesa
 4. Escucha la descripción de lo que aparece en pantalla
 
 #### 3. Describir una imagen desde archivo
 
-1. Presiona `NVDA+Shift+L` (verbaliza) o `NVDA+Shift+Control+L` (ventana)
+1. Presiona `NVDA+Alt+F` (verbaliza) o `NVDA+Alt+Shift+F` (ventana)
 2. Se abrirá un diálogo de selección de archivo
 3. Navega hasta tu imagen (JPG, PNG, BMP, etc.)
 4. Selecciona el archivo
@@ -149,7 +149,7 @@ Para usar el complemento, necesitas obtener una API key de uno de estos proveedo
 #### 4. Describir una imagen desde el portapapeles
 
 1. Copia una imagen al portapapeles (Ctrl+C en una aplicación)
-2. Presiona `NVDA+Shift+C` (verbaliza) o `NVDA+Shift+Control+C` (ventana)
+2. Presiona `NVDA+Alt+C` (verbaliza) o `NVDA+Alt+Shift+C` (ventana)
 3. NVDA procesará y describirá la imagen
 
 ## Configuración
@@ -192,7 +192,7 @@ Para usar el complemento, necesitas obtener una API key de uno de estos proveedo
 ### El complemento no describe imágenes en Word
 
 - Asegúrate de que la imagen esté seleccionada
-- Intenta usar la captura de pantalla (`NVDA+Shift+F`) como alternativa
+- Intenta usar la captura de pantalla (`NVDA+Alt+S`) como alternativa
 - Algunas imágenes incrustadas pueden requerir métodos especiales
 
 ## Privacidad y seguridad

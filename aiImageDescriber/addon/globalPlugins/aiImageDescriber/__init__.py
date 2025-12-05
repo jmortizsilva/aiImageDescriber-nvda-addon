@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+﻿# -*- coding: UTF-8 -*-
 """
 AI Image Describer - Global Plugin para NVDA
 Describe imágenes usando APIs de IA (OpenAI, Gemini, Be My Eyes)
@@ -56,11 +56,11 @@ def checkAndInstallDependencies():
 	# Mostrar mensaje informativo sobre dependencias faltantes
 	message = (
 		"AI Image Describer necesita instalar los siguientes componentes:\n\n"
-		+ "\n".join(f"• {dep}" for dep in missingDeps) + "\n\n"
+		+ "\n".join(f"â€¢ {dep}" for dep in missingDeps) + "\n\n"
 		"Estos son necesarios para:\n"
-		"• Pillow: Capturar y procesar imágenes\n"
-		"• requests: Comunicarse con las APIs de IA\n\n"
-		"¿Deseas instalarlos automáticamente?\n"
+		"â€¢ Pillow: Capturar y procesar imágenes\n"
+		"â€¢ requests: Comunicarse con las APIs de IA\n\n"
+		"Â¿Deseas instalarlos automáticamente?\n"
 		"(Se descargará desde Internet, puede tardar 10-30 segundos)"
 	)
 	
@@ -92,7 +92,7 @@ def checkAndInstallDependencies():
 					log.error(f"Timeout al instalar {dep}")
 					raise Exception(f"La instalación de {dep} tardó demasiado")
 			
-			nvdaUI.message("¡Componentes instalados! Reinicia NVDA para usarlos.")
+			nvdaUI.message("Â¡Componentes instalados! Reinicia NVDA para usarlos.")
 			
 			# Mostrar mensaje de éxito
 			gui.messageBox(
@@ -200,6 +200,25 @@ _globalPluginInstance = None
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	"""Plugin global para descripción de imágenes con IA"""
+	
+	# Diccionario de gestos/atajos de teclado
+	__gestures = {
+		# Comandos básicos (verbalizan la descripción)
+		"kb:NVDA+alt+i": "describeImageAtFocus",
+		"kb:NVDA+alt+s": "captureFullScreen",
+		"kb:NVDA+alt+c": "describeFromClipboard",
+		"kb:NVDA+alt+f": "loadImageFromFile",
+		
+		# Comandos con ventana (añadir Shift)
+		"kb:NVDA+alt+shift+i": "describeImageAtFocusWindow",
+		"kb:NVDA+alt+shift+s": "captureFullScreenWindow",
+		"kb:NVDA+alt+shift+c": "describeFromClipboardWindow",
+		"kb:NVDA+alt+shift+f": "loadImageFromFileWindow",
+		
+		# Otros comandos
+		"kb:NVDA+alt+o": "openSettings",
+		"kb:NVDA+alt+h": "showHelp",
+	}
 	
 	def __init__(self):
 		"""Inicializa el plugin global"""
@@ -366,8 +385,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	
 	@scriptHandler.script(
 		description="Describe la imagen bajo el foco o cursor del navegador de objetos",
-		category="AI Image Describer",
-		gesture="kb:NVDA+shift+i"
+		category="AI Image Describer"
 	)
 	def script_describeImageAtFocus(self, gesture):
 		"""Describe la imagen en el objeto actual."""
@@ -392,8 +410,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	
 	@scriptHandler.script(
 		description="Describe la imagen bajo el foco y muestra el resultado en una ventana",
-		category="AI Image Describer",
-		gesture="kb:NVDA+shift+control+i"
+		category="AI Image Describer"
 	)
 	def script_describeImageAtFocusWindow(self, gesture):
 		"""Describe la imagen en el objeto actual y muestra en ventana."""
@@ -418,8 +435,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	
 	@scriptHandler.script(
 		description="Captura y describe la pantalla completa",
-		category="AI Image Describer",
-		gesture="kb:NVDA+shift+f"
+		category="AI Image Describer"
 	)
 	def script_captureFullScreen(self, gesture):
 		"""Captura toda la pantalla y la describe."""
@@ -441,8 +457,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	
 	@scriptHandler.script(
 		description="Captura y describe la pantalla completa mostrando el resultado en una ventana",
-		category="AI Image Describer",
-		gesture="kb:NVDA+shift+control+f"
+		category="AI Image Describer"
 	)
 	def script_captureFullScreenWindow(self, gesture):
 		"""Captura toda la pantalla, la describe y muestra en ventana."""
@@ -464,8 +479,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	
 	@scriptHandler.script(
 		description="Describe una imagen desde el portapapeles",
-		category="AI Image Describer",
-		gesture="kb:NVDA+shift+c"
+		category="AI Image Describer"
 	)
 	def script_describeFromClipboard(self, gesture):
 		"""Describe una imagen desde el portapapeles."""
@@ -488,8 +502,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	
 	@scriptHandler.script(
 		description="Describe una imagen desde el portapapeles y muestra el resultado en una ventana",
-		category="AI Image Describer",
-		gesture="kb:NVDA+shift+control+c"
+		category="AI Image Describer"
 	)
 	def script_describeFromClipboardWindow(self, gesture):
 		"""Describe una imagen desde el portapapeles y muestra en ventana."""
@@ -512,8 +525,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	
 	@scriptHandler.script(
 		description="Abre un diálogo para cargar y describir una imagen desde archivo",
-		category="AI Image Describer",
-		gesture="kb:NVDA+shift+l"
+		category="AI Image Describer"
 	)
 	def script_loadImageFromFile(self, gesture):
 		"""Carga una imagen desde un archivo y la describe"""
@@ -528,8 +540,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	
 	@scriptHandler.script(
 		description="Abre un diálogo para cargar una imagen desde archivo y muestra el resultado en una ventana",
-		category="AI Image Describer",
-		gesture="kb:NVDA+shift+control+l"
+		category="AI Image Describer"
 	)
 	def script_loadImageFromFileWindow(self, gesture):
 		"""Carga una imagen desde un archivo y la describe en ventana"""
@@ -544,8 +555,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	
 	@scriptHandler.script(
 		description="Abre la configuración de AI Image Describer",
-		category="AI Image Describer",
-		gesture="kb:NVDA+shift+s"
+		category="AI Image Describer"
 	)
 	def script_openSettings(self, gesture):
 		"""Abre el panel de configuración"""
@@ -557,8 +567,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	
 	@scriptHandler.script(
 		description="Muestra la ayuda rápida de AI Image Describer",
-		category="AI Image Describer",
-		gesture="kb:NVDA+shift+h"
+		category="AI Image Describer"
 	)
 	def script_showHelp(self, gesture):
 		"""Muestra el diálogo de ayuda"""
@@ -589,12 +598,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				nvdaUI.message("No se pudo extraer la imagen del objeto")
 				return
 			
+			# Obtener configuración
+			detailLevel = config.conf["aiImageDescriber"]["detailLevel"]
+			language = config.conf["aiImageDescriber"]["language"]
+			log.info(f"_analyzeObject: Usando detailLevel='{detailLevel}', language='{language}', showWindow={showWindow}")
+			
 			# Obtener descripción de la API
 			description = self.currentClient.describeImage(
 				imageData,
-				detail=config.conf["aiImageDescriber"]["detailLevel"],
-				language=config.conf["aiImageDescriber"]["language"],
-				maxTokens=2048
+				detail=detailLevel,
+				language=language,
+				maxTokens=4000  # Aumentado para Gemini thinking tokens
 			)
 			
 			# Mostrar resultado según preferencia
@@ -622,22 +636,27 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			else:
 				nvdaUI.message("Tipo de captura no soportado")
 				return
-			
+		
 			if not imageData:
 				if captureType == "clipboard":
 					nvdaUI.message("No hay ninguna imagen en el portapapeles")
 				else:
 					nvdaUI.message("Error al capturar la pantalla")
 				return
-			
+		
+			# Obtener configuración
+			detailLevel = config.conf["aiImageDescriber"]["detailLevel"]
+			language = config.conf["aiImageDescriber"]["language"]
+			log.info(f"_captureAndDescribe: captureType='{captureType}', detailLevel='{detailLevel}', language='{language}', showWindow={showWindow}")
+		
 			# Describir imagen
 			description = self.currentClient.describeImage(
-				imageData,
-				detail=config.conf["aiImageDescriber"]["detailLevel"],
-				language=config.conf["aiImageDescriber"]["language"],
-				maxTokens=2048
-			)
-			
+			imageData,
+			detail=detailLevel,
+			language=language,
+			maxTokens=4000  # Aumentado para Gemini thinking tokens
+		)
+		
 			# Mostrar resultado según preferencia
 			if showWindow:
 				wx.CallAfter(self._showResultDialog, title, description)
@@ -645,11 +664,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				# Limpiar Markdown para verbalización
 				cleanText = stripMarkdown(description)
 				nvdaUI.message(cleanText)
-			
+		
 		except Exception as e:
 			log.error(f"Error al capturar y describir: {e}", exc_info=True)
 			nvdaUI.message(f"Error: {str(e)}")
-	
+
 	def _showFileDialog(self, showWindow=False):
 		"""Muestra diálogo para seleccionar archivo de imagen"""
 		try:
@@ -689,12 +708,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				nvdaUI.message("No se pudo cargar la imagen")
 				return
 			
+			# Obtener configuración
+			detailLevel = config.conf["aiImageDescriber"]["detailLevel"]
+			language = config.conf["aiImageDescriber"]["language"]
+			log.info(f"_analyzeImageFile: filePath='{filePath}', detailLevel='{detailLevel}', language='{language}', showWindow={showWindow}")
+			
 			# Describir imagen
 			description = self.currentClient.describeImage(
 				imageData,
-				detail=config.conf["aiImageDescriber"]["detailLevel"],
-				language=config.conf["aiImageDescriber"]["language"],
-				maxTokens=2048
+				detail=detailLevel,
+				language=language,
+				maxTokens=4000  # Aumentado para Gemini thinking tokens
 			)
 			
 			fileName = os.path.basename(filePath)
